@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/stinkyfingers/servers/udp/server/handlers"
+	"github.com/stinkyfingers/servers/udp/serve/handlers"
 )
 
 var (
