@@ -1,0 +1,35 @@
+{
+  "pizza": {
+    "toppings": [
+      {
+        "name": "sausage",
+        "price": "2.00"
+      },
+      {
+        "name": "pepperoni",
+        "price": "1.50"
+      },
+      {
+        "name": "onions",
+        "price": ".50"
+      }
+    ],
+    "crust": [
+      {
+        "name": "pan"
+      },
+      {
+        "name": "thin"
+      }
+    ]
+  },
+  "sandwiches": {
+    "subs": {
+      "types": [
+        "gyro",
+        "hero",
+        "BLT"
+      ]
+    }
+  }
+}

@@ -1,1 +1,6 @@
 osquery/osquery.*
+*.crt
+*.key
+*.zip
+.terraform
+terraform.tfstate*

@@ -1,38 +1,43 @@
 package main
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 type Response struct {
-	NodeKey string `json:"node_key"`
+	Message string    `json:"message"`
+	Time    time.Time `json:"time"`
 }
 
 func main() {
-
 	mux := http.NewServeMux()
-	mux.HandleFunc("/enroll", enrollHandler)
 	mux.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServeTLS(":8888", "server.crt", "server.key", mux))
-}
+	server := http.Server{
+		Handler:   mux,
+		TLSConfig: &tls.Config{},
+		Addr:      ":8888",
+		// WriteTimeout: time.Nanosecond,
+	}
+	err := server.ListenAndServeTLS("server.crt", "server.key")
+	if err != nil {
+		log.Fatal(err)
+	}
 
-func enrollHandler(w http.ResponseWriter, r *http.Request) {
-	b, _ := ioutil.ReadAll(r.Body)
-	log.Print(string(b))
-	resp := Response{"test"}
-	j, _ := json.Marshal(resp)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(j)
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	b, _ := ioutil.ReadAll(r.Body)
 	log.Print(string(b))
-	l := struct{}{}
-	j, _ := json.Marshal(l)
+	resp := Response{
+		Message: string(b),
+		Time:    time.Now(),
+	}
+	j, _ := json.Marshal(resp)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(j)
 }

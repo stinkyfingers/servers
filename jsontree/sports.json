@@ -1,0 +1,20 @@
+{
+  "baseball": {
+    "fun": {
+      "label": "best"
+    },
+    "headgear": true
+  },
+  "football": {
+    "fun": {
+      "label": "worst"
+    },
+    "headgear": true
+  },
+  "basketball": {
+    "fun": {
+      "label": "medium"
+    },
+    "headgear": false
+  }
+}
